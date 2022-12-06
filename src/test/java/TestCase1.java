@@ -24,14 +24,13 @@ public class TestCase1 {
         WebDriverManager.chromedriver().setup();
     }
 
-//    @Before
     @BeforeMethod
     public void setUp() {
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         this.driver = new ChromeDriver(options);
     }
-//    @After
+
     @AfterMethod
     public void tearDown() {
         this.driver.quit();
@@ -56,5 +55,23 @@ public class TestCase1 {
         final String     value   = message.getText();
         assertEquals("Received!", value);
     }
+    @Test
+    public void test02() {
+        this.driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
+        final String title = this.driver.getTitle();
+        assertEquals("Web form", title);
+
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+
+        final WebElement textBox      = this.driver.findElement(By.name("my-text"));
+        final WebElement submitButton = this.driver.findElement(By.cssSelector("button"));
+
+        textBox.sendKeys("Selenium");
+        submitButton.click();
+
+        final WebElement message = this.driver.findElement(By.id("message"));
+        final String     value   = message.getText();
+        assertEquals("Received!", value);
+    }
 }
