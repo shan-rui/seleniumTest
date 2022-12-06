@@ -1,19 +1,18 @@
-
-import java.time.Duration;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import java.time.Duration;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 public class TestCase1 {
 
@@ -24,14 +23,14 @@ public class TestCase1 {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeMethod
+    @Before
     public void setUp() {
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         this.driver = new ChromeDriver(options);
     }
 
-    @AfterMethod
+    @After
     public void tearDown() {
         this.driver.quit();
     }

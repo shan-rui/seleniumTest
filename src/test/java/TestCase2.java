@@ -1,17 +1,18 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 public class TestCase2 {
 
@@ -22,20 +23,20 @@ public class TestCase2 {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeMethod
+    @Before
     public void setUp() {
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         this.driver = new ChromeDriver(options);
     }
 
-    @AfterMethod
+    @After
     public void tearDown() {
         this.driver.quit();
     }
 
     @Test
-    public void test01() {
+    public void test03() {
         this.driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
         final String title = this.driver.getTitle();
@@ -54,7 +55,7 @@ public class TestCase2 {
         assertEquals("Received!", value);
     }
     @Test
-    public void test02() {
+    public void test04() {
         this.driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
         final String title = this.driver.getTitle();
