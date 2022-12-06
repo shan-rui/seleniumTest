@@ -1,11 +1,6 @@
-import static org.junit.Assert.assertEquals;
 
 import java.time.Duration;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class TestCase1 {
 
@@ -23,13 +24,15 @@ public class TestCase1 {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Before
+//    @Before
+    @BeforeMethod
     public void setUp() {
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         this.driver = new ChromeDriver(options);
     }
-    @After
+//    @After
+    @AfterMethod
     public void tearDown() {
         this.driver.quit();
     }
